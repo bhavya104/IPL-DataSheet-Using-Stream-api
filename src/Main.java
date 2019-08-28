@@ -7,15 +7,14 @@ public class  Main {
 	private static final String DELIVERIESFILE = "deliveries.csv";
 	private static final String PATH = "/home/kashish/Desktop/IPL/";
 
-	@SuppressWarnings("unused")
 	public static void main(String[] args) throws Exception {
 
 		List<Match> matches = getmatchesfromcsv();
-		matchesplayedperyear(matches);
-		matcheswonbyeachteam(matches);
+		matchesPlayedPerYear(matches);
+		matchesWonByEachTeam(matches);
 		List<Delivery> deliveries = getdeliveriesfromcsv();
-		extrarunsconcededperteam(matches,deliveries);
-		topeconomicalbowler(matches,deliveries);
+		extraRunsConcededPerTeam(matches,deliveries);
+		topEconomicalBowler(matches,deliveries);
 
 	}
 
@@ -92,7 +91,7 @@ public class  Main {
 		return matches;
 	}
 
-	private static void topeconomicalbowler(List<Match> matches, List<Delivery> deliveries) {
+	private static void topEconomicalBowler(List<Match> matches, List<Delivery> deliveries) {
 		// TODO Auto-generated method stub
 		int year = 2015;
 		HashMap<String,Bowler> economicalBowlers = new HashMap<>();
@@ -130,7 +129,7 @@ public class  Main {
 
 	}
 
-	private static void extrarunsconcededperteam(List<Match> matches, List<Delivery> deliveries) {
+	private static void extraRunsConcededPerTeam(List<Match> matches, List<Delivery> deliveries) {
 		// TODO Auto-generated method stub
 		HashMap<String,Integer> RunsConceded = new HashMap<>();
 		int year = 2016;
@@ -152,7 +151,7 @@ public class  Main {
         }
 	}
 
-	private static void matcheswonbyeachteam(List<Match> matches) {
+	private static void matchesWonByEachTeam(List<Match> matches) {
 		// TODO Auto-generated method stub
 		HashMap<String,Integer> MatchesWon = new HashMap<>();
 		for (int i=0; i<matches.size(); i++) {
@@ -169,7 +168,7 @@ public class  Main {
         }
 	}
 
-	private static void matchesplayedperyear(List<Match> matches) {
+	private static void matchesPlayedPerYear(List<Match> matches) {
 		// TODO Auto-generated method stub
 		HashMap<Integer,Integer> matchesPerYear = new HashMap<>();
 		for (int i=0; i<matches.size(); i++) {
