@@ -94,43 +94,48 @@ public class  Main {
 
 	private static void topeconomicalbowler(List<Match> matches, List<Delivery> deliveries) {
 		// TODO Auto-generated method stub
-		int k=0,x=0;
-		HashMap<String,Integer> economicalBowler = new HashMap<>();
+		int year = 2015;
+		HashMap<String,Bowler> economicalBowlers = new HashMap<>();
 		for(int i=0;i<matches.size();i++) {
-			if(matches.get(i).getSeason()==2015) {
+			if(matches.get(i).getSeason()==year) {
 				for(int j=0;j<deliveries.size();j++) {
 					if(matches.get(i).getId()==deliveries.get(j).getMatchId()) {
-						k++;
-						if(economicalBowler.containsKey(deliveries.get(j).getBowler()))
-							economicalBowler.put(deliveries.get(j).getBowler(), economicalBowler.get(deliveries.get(j).getBowler())+deliveries.get(j).getTotalRuns());
-						else {
-							economicalBowler.put(deliveries.get(j).getBowler(), deliveries.get(j).getTotalRuns());
-							x++;
+						if(economicalBowlers.containsKey(deliveries.get(j).getBowler())) {
+							economicalBowlers.get(deliveries.get(j).getBowler()).balls++;
+							economicalBowlers.get(deliveries.get(j).getBowler()).totalRuns +=
+																					deliveries.get(j).getTotalRuns();
+						} else {
+							economicalBowlers.put(deliveries.get(j).getBowler(), new Bowler());
+							economicalBowlers.get(deliveries.get(j).getBowler()).balls=1;
+							economicalBowlers.get(deliveries.get(j).getBowler()).totalRuns =
+																					deliveries.get(j).getTotalRuns();
 						}
 					}
 				}
 			}
 		}
-		int max=0;
-		String str = "";
-		for (Map.Entry entry : economicalBowler.entrySet()) {
-
-			if(	(int)entry.getValue()>max) {
-				max = (int)entry.getValue();
-				str = (String)entry.getKey();
+		int minEconomy=Integer.MAX_VALUE;
+		String topEconomicalBowler = "";
+		for (Map.Entry entry : economicalBowlers.entrySet()) {
+			Bowler bowler = (Bowler)entry.getValue();
+			bowler.economy = bowler.totalRuns/bowler.balls;
+			if( bowler.economy	< minEconomy) {
+				minEconomy = bowler.economy;
+				topEconomicalBowler = (String)entry.getKey();
 			}
 
         }
 
-		System.out.println(str);
+		System.out.println(topEconomicalBowler);
 
 	}
 
 	private static void extrarunsconcededperteam(List<Match> matches, List<Delivery> deliveries) {
 		// TODO Auto-generated method stub
 		HashMap<String,Integer> RunsConceded = new HashMap<>();
+		int year = 2016;
 		for(int i=0;i<matches.size();i++) {
-			if(matches.get(i).getSeason()==2016) {
+			if(matches.get(i).getSeason()== year) {
 				for(int j=0;j<deliveries.size();j++) {
 					if(matches.get(i).getId()==deliveries.get(j).getMatchId()) {
 						if(RunsConceded.containsKey(deliveries.get(j).getBattingTeam()))
@@ -159,8 +164,8 @@ public class  Main {
 				MatchesWon.put(matches.get(i).getWinner(), MatchesWon.get(matches.get(i).getWinner())+1);
 		}
 		System.out.println("Matches won by each team till now:");
-		for (Map.Entry entry : MatchesWon.entrySet()) {
-            System.out.println(entry.getKey() + " " + entry.getValue());
+		for (Map.Entry match : MatchesWon.entrySet()) {
+            System.out.println(match.getKey() + " " + match.getValue());
         }
 	}
 
@@ -174,8 +179,8 @@ public class  Main {
 				matchesPerYear.put(matches.get(i).getSeason(), 1);
 		}
 		System.out.println("Matches played per year:");
-		for (Map.Entry entry : matchesPerYear.entrySet()) {
-            System.out.println(entry.getKey() + " " + entry.getValue());
+		for (Map.Entry match : matchesPerYear.entrySet()) {
+            System.out.println(match.getKey() + " " + match.getValue());
         }
 	}
 }
