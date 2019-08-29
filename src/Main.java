@@ -1,23 +1,22 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.lang.reflect.Array;
+import java.util.*;
 
 public class Main {
 
 
     public static void main(String[] args) throws Exception {
-        List<Match> matches = getmatchesfromcsv();
-        List<Delivery> deliveries = getdeliveriesfromcsv();
-
-        matchesPlayedPerYear(matches);
-        matchesWonByEachTeam(matches);
-        extraRunsConcededPerTeam(matches, deliveries);
-        topEconomicalBowler(matches, deliveries);
-        countSixByEveryPlayer(deliveries);
+        ArrayList li = Arrays.asList(1,2,3);
+//        List<Match> matches = getmatchesfromcsv();
+//        List<Delivery> deliveries = getdeliveriesfromcsv();
+//
+//        matchesPlayedPerYear(matches);
+//        matchesWonByEachTeam(matches);
+//        extraRunsConcededPerTeam(matches, deliveries);
+//        topEconomicalBowler(matches, deliveries);
+//        countSixByEveryPlayer(deliveries);
     }
 
     private static void countSixByEveryPlayer(List<Delivery> deliveries) {
