@@ -17,6 +17,7 @@ public class Match {
     public static final int UMPIRE1=15;
     public static final int UMPIRE2=16;
     public static final int UMPIRE3=17;
+
     private int id;
     private int season;
     private int dlApplied;
@@ -35,8 +36,6 @@ public class Match {
     private String umpire1;
     private String umpire2;
     private String umpire3;
-
-    Match(){}
 
     public void setId(int id) {
         this.id = id;
