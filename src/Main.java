@@ -18,9 +18,23 @@ public class Main {
         List<Delivery> deliveries = getdeliveriesfromcsv();
         extraRunsConcededPerTeam(matches, deliveries);
         topEconomicalBowler(matches, deliveries);
+        countSixByEveryPlayer(deliveries);
     }
 
-    private static List<Delivery> getdeliveriesfromcsv() throws IOException {
+	private static void countSixByEveryPlayer(List<Delivery> deliveries) {
+    	Map<String,Integer> countSixMap = new HashMap<>();
+    	for(int i=0;i<deliveries.size();i++) {
+    		if(!countSixMap.containsKey(deliveries.get(i).getBatsman()))
+    			countSixMap.put(deliveries.get(i).getBatsman(),0);
+			if(deliveries.get(i).getTotalRuns()>=6)
+				countSixMap.put(deliveries.get(i).getBatsman(),countSixMap.get(deliveries.get(i).getBatsman())+1);
+		}
+		for (Map.Entry entry : countSixMap.entrySet()) {
+			System.out.println(entry.getKey() + " " + entry.getValue());
+		}
+	}
+
+	private static List<Delivery> getdeliveriesfromcsv() throws IOException {
         FileReader fileReader = new FileReader(DELIVERIESFILE);
         BufferedReader bufferedReader = new BufferedReader(fileReader);
         bufferedReader.readLine();//skips the line
@@ -156,7 +170,7 @@ public class Main {
 
     private static void matchesWonByEachTeam(List<Match> matches) {
         Map<String, Integer> MatchesWonMap = new HashMap<>();
-        for (int i = 0; i < matches.size(); i++) {
+        for(int i = 0; i < matches.size(); i++) {
             if (!MatchesWonMap.containsKey(matches.get(i).getTeam1()))
                 MatchesWonMap.put(matches.get(i).getTeam1(), 0);
             if (!MatchesWonMap.containsKey(matches.get(i).getTeam2()))
