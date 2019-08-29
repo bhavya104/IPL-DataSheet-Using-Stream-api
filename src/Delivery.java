@@ -1,26 +1,4 @@
 public class Delivery {
-    public static final int MATCH_ID = 0;
-    public static final int INNING = 1;
-    public static final int BATTING_TEAM = 2;
-    public static final int BOWLING_TEAM = 3;
-    public static final int OVER = 4;
-    public static final int BALL = 5;
-    public static final int BATSMAN = 6;
-    public static final int NON_STRIKER = 7;
-    public static final int BOWLER = 8;
-    public static final int IS_SUPER_OVER = 9;
-    public static final int WIDE_RUNS = 10;
-    public static final int BYE_RUNs = 11;
-    public static final int LEGBYE_RUNS = 12;
-    public static final int NOBALL_RUNS = 13;
-    public static final int PENALTY_RUNS = 14;
-    public static final int BATSMAN_RUNS = 15;
-    public static final int EXTRA_RUNS = 16;
-    public static final int TOTAL_RUNS = 17;
-    public static final int PLAYER_DISMISSED = 18;
-    public static final int DISMISSAL_KIND = 19;
-    public static final int FEILDER = 20;
-
     private int matchId;
     private int inning;
     private int over;

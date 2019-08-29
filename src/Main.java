@@ -7,9 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 public class Main {
-    private static final String COMMA_DELIMITER = ",";
-    private static final String MATCHESFILE = "csvfiles/matches.csv";
-    private static final String DELIVERIESFILE = "csvfiles/deliveries.csv";
+
 
     public static void main(String[] args) throws Exception {
         List<Match> matches = getmatchesfromcsv();
@@ -36,8 +34,31 @@ public class Main {
     }
 
     private static List<Delivery> getdeliveriesfromcsv() throws IOException {
-        FileReader fileReader = new FileReader(DELIVERIESFILE);
-        BufferedReader bufferedReader = new BufferedReader(fileReader);
+        final int MATCH_ID = 0;
+        final int INNING = 1;
+        final int BATTING_TEAM = 2;
+        final int BOWLING_TEAM = 3;
+        final int OVER = 4;
+        final int BALL = 5;
+        final int BATSMAN = 6;
+        final int NON_STRIKER = 7;
+        final int BOWLER = 8;
+        final int IS_SUPER_OVER = 9;
+        final int WIDE_RUNS = 10;
+        final int BYE_RUNs = 11;
+        final int LEGBYE_RUNS = 12;
+        final int NOBALL_RUNS = 13;
+        final int PENALTY_RUNS = 14;
+        final int BATSMAN_RUNS = 15;
+        final int EXTRA_RUNS = 16;
+        final int TOTAL_RUNS = 17;
+        final int PLAYER_DISMISSED = 18;
+        final int DISMISSAL_KIND = 19;
+        final int FEILDER = 20;
+        final String COMMA_DELIMITER = ",";
+        final String DELIVERIESFILE = "csvfiles/deliveries.csv";
+
+        BufferedReader bufferedReader = new BufferedReader(new FileReader(DELIVERIESFILE));
         bufferedReader.readLine();//skips the line
         List<Delivery> deliveries = new ArrayList<>();
         String deliveryInfo = "";
@@ -47,27 +68,27 @@ public class Main {
             String[] deliveryData = deliveryInfo.split(COMMA_DELIMITER);
             Delivery delivery = new Delivery();
 
-            delivery.setMatchId(Integer.parseInt(deliveryData[Delivery.MATCH_ID]));
-            delivery.setInning(Integer.parseInt(deliveryData[Delivery.INNING]));
-            delivery.setBattingTeam(deliveryData[Delivery.BATTING_TEAM]);
-            delivery.setBowlingTeam(deliveryData[Delivery.BOWLING_TEAM]);
-            delivery.setOver(Integer.parseInt(deliveryData[Delivery.OVER]));
-            delivery.setBall(Integer.parseInt(deliveryData[Delivery.BALL]));
-            delivery.setBatsman(deliveryData[Delivery.BATSMAN]);
-            delivery.setNonStriker(deliveryData[Delivery.NON_STRIKER]);
-            delivery.setBowler(deliveryData[Delivery.BOWLER]);
-            delivery.setIsSuperOver(Integer.parseInt(deliveryData[Delivery.IS_SUPER_OVER]));
-            delivery.setWideRuns(Integer.parseInt(deliveryData[Delivery.WIDE_RUNS]));
-            delivery.setByeRuns(Integer.parseInt(deliveryData[Delivery.BYE_RUNs]));
-            delivery.setLegbyeRuns(Integer.parseInt(deliveryData[Delivery.LEGBYE_RUNS]));
-            delivery.setNoballRuns(Integer.parseInt(deliveryData[Delivery.NOBALL_RUNS]));
-            delivery.setPenaltyRuns(Integer.parseInt(deliveryData[Delivery.PENALTY_RUNS]));
-            delivery.setBatsmanRuns(Integer.parseInt(deliveryData[Delivery.BATSMAN_RUNS]));
-            delivery.setExtraRuns(Integer.parseInt(deliveryData[Delivery.EXTRA_RUNS]));
-            delivery.setTotalRuns(Integer.parseInt(deliveryData[Delivery.TOTAL_RUNS]));
-            delivery.setPlayerDismissed(deliveryData[Delivery.PLAYER_DISMISSED]);
-            delivery.setDismissalKind(deliveryData[Delivery.DISMISSAL_KIND]);
-            delivery.setFeilder(deliveryData[Delivery.FEILDER]);
+            delivery.setMatchId(Integer.parseInt(deliveryData[MATCH_ID]));
+            delivery.setInning(Integer.parseInt(deliveryData[INNING]));
+            delivery.setBattingTeam(deliveryData[BATTING_TEAM]);
+            delivery.setBowlingTeam(deliveryData[BOWLING_TEAM]);
+            delivery.setOver(Integer.parseInt(deliveryData[OVER]));
+            delivery.setBall(Integer.parseInt(deliveryData[BALL]));
+            delivery.setBatsman(deliveryData[BATSMAN]);
+            delivery.setNonStriker(deliveryData[NON_STRIKER]);
+            delivery.setBowler(deliveryData[BOWLER]);
+            delivery.setIsSuperOver(Integer.parseInt(deliveryData[IS_SUPER_OVER]));
+            delivery.setWideRuns(Integer.parseInt(deliveryData[WIDE_RUNS]));
+            delivery.setByeRuns(Integer.parseInt(deliveryData[BYE_RUNs]));
+            delivery.setLegbyeRuns(Integer.parseInt(deliveryData[LEGBYE_RUNS]));
+            delivery.setNoballRuns(Integer.parseInt(deliveryData[NOBALL_RUNS]));
+            delivery.setPenaltyRuns(Integer.parseInt(deliveryData[PENALTY_RUNS]));
+            delivery.setBatsmanRuns(Integer.parseInt(deliveryData[BATSMAN_RUNS]));
+            delivery.setExtraRuns(Integer.parseInt(deliveryData[EXTRA_RUNS]));
+            delivery.setTotalRuns(Integer.parseInt(deliveryData[TOTAL_RUNS]));
+            delivery.setPlayerDismissed(deliveryData[PLAYER_DISMISSED]);
+            delivery.setDismissalKind(deliveryData[DISMISSAL_KIND]);
+            delivery.setFeilder(deliveryData[FEILDER]);
 
             deliveries.add(delivery);
         }
@@ -75,9 +96,28 @@ public class Main {
         return deliveries;
     }
 
-    private static List<Match> getmatchesfromcsv() throws IOException {
-        FileReader fileReader = new FileReader(MATCHESFILE);
-        BufferedReader bufferedReader = new BufferedReader(fileReader);
+    private static List<Match> getmatchesfromcsv() throws IOException {final int ID=0;
+        final int SEASON=1;
+        final int CITY=2;
+        final int DATE=3;
+        final int TEAM1=4;
+        final int TEAM2=5;
+        final int TOSS_WINNER=6;
+        final int TOSS_DECISION=7;
+        final int RESULT=8;
+        final int DL_APPLIED=9;
+        final int WINNER=10;
+        final int WIN_BY_RUNS=11;
+        final int WIN_BY_WICKETS=12;
+        final int PLAYER_OF_MATCH=13;
+        final int VENUE=14;
+        final int UMPIRE1=15;
+        final int UMPIRE2=16;
+        final int UMPIRE3=17;
+        final String COMMA_DELIMITER = ",";
+        final String MATCHESFILE = "csvfiles/matches.csv";
+
+        BufferedReader bufferedReader = new BufferedReader(new FileReader(MATCHESFILE));
         bufferedReader.readLine();//skips the line
         List<Match> matches = new ArrayList<>();
         String matchInfo = "";
@@ -87,24 +127,24 @@ public class Main {
             String[] matchData = matchInfo.split(COMMA_DELIMITER);
             Match match = new Match();
 
-            match.setCity(matchData[Match.CITY]);
-            match.setDate(matchData[Match.DATE]);
-            match.setId(Integer.parseInt(matchData[Match.ID]));
-            match.setResult(matchData[Match.RESULT]);
-            match.setSeason(Integer.parseInt(matchData[Match.SEASON]));
-            match.setTeam1(matchData[Match.TEAM1]);
-            match.setTeam2(matchData[Match.TEAM2]);
-            match.setDlApplied(Integer.parseInt(matchData[Match.DL_APPLIED]));
-            match.setUmpire1(matchData[Match.UMPIRE1]);
-            match.setUmpire2(matchData[Match.UMPIRE2]);
-            match.setUmpire3(matchData[Match.UMPIRE3]);
-            match.setVenue(matchData[Match.VENUE]);
-            match.setWinner(matchData[Match.WINNER]);
-            match.setPlayerOfMatch(matchData[Match.PLAYER_OF_MATCH]);
-            match.setTossDecision(matchData[Match.TOSS_DECISION]);
-            match.setTossWinner(matchData[Match.TOSS_WINNER]);
-            match.setWinByRuns(Integer.parseInt(matchData[Match.WIN_BY_RUNS]));
-            match.setWinByWickets(Integer.parseInt(matchData[Match.WIN_BY_WICKETS]));
+            match.setCity(matchData[CITY]);
+            match.setDate(matchData[DATE]);
+            match.setId(Integer.parseInt(matchData[ID]));
+            match.setResult(matchData[RESULT]);
+            match.setSeason(Integer.parseInt(matchData[SEASON]));
+            match.setTeam1(matchData[TEAM1]);
+            match.setTeam2(matchData[TEAM2]);
+            match.setDlApplied(Integer.parseInt(matchData[DL_APPLIED]));
+            match.setUmpire1(matchData[UMPIRE1]);
+            match.setUmpire2(matchData[UMPIRE2]);
+            match.setUmpire3(matchData[UMPIRE3]);
+            match.setVenue(matchData[VENUE]);
+            match.setWinner(matchData[WINNER]);
+            match.setPlayerOfMatch(matchData[PLAYER_OF_MATCH]);
+            match.setTossDecision(matchData[TOSS_DECISION]);
+            match.setTossWinner(matchData[TOSS_WINNER]);
+            match.setWinByRuns(Integer.parseInt(matchData[WIN_BY_RUNS]));
+            match.setWinByWickets(Integer.parseInt(matchData[WIN_BY_WICKETS]));
 
             matches.add(match);
         }

@@ -1,23 +1,4 @@
 public class Match {
-    public static final int ID=0;
-    public static final int SEASON=1;
-    public static final int CITY=2;
-    public static final int DATE=3;
-    public static final int TEAM1=4;
-    public static final int TEAM2=5;
-    public static final int TOSS_WINNER=6;
-    public static final int TOSS_DECISION=7;
-    public static final int RESULT=8;
-    public static final int DL_APPLIED=9;
-    public static final int WINNER=10;
-    public static final int WIN_BY_RUNS=11;
-    public static final int WIN_BY_WICKETS=12;
-    public static final int PLAYER_OF_MATCH=13;
-    public static final int VENUE=14;
-    public static final int UMPIRE1=15;
-    public static final int UMPIRE2=16;
-    public static final int UMPIRE3=17;
-
     private int id;
     private int season;
     private int dlApplied;
