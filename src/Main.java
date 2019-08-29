@@ -13,28 +13,29 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         List<Match> matches = getmatchesfromcsv();
+        List<Delivery> deliveries = getdeliveriesfromcsv();
+
         matchesPlayedPerYear(matches);
         matchesWonByEachTeam(matches);
-        List<Delivery> deliveries = getdeliveriesfromcsv();
         extraRunsConcededPerTeam(matches, deliveries);
         topEconomicalBowler(matches, deliveries);
         countSixByEveryPlayer(deliveries);
     }
 
-	private static void countSixByEveryPlayer(List<Delivery> deliveries) {
-    	Map<String,Integer> countSixMap = new HashMap<>();
-    	for(int i=0;i<deliveries.size();i++) {
-    		if(!countSixMap.containsKey(deliveries.get(i).getBatsman()))
-    			countSixMap.put(deliveries.get(i).getBatsman(),0);
-			if(deliveries.get(i).getTotalRuns()>=6)
-				countSixMap.put(deliveries.get(i).getBatsman(),countSixMap.get(deliveries.get(i).getBatsman())+1);
-		}
-		for (Map.Entry entry : countSixMap.entrySet()) {
-			System.out.println(entry.getKey() + " " + entry.getValue());
-		}
-	}
+    private static void countSixByEveryPlayer(List<Delivery> deliveries) {
+        Map<String, Integer> countSixMap = new HashMap<>();
+        for (int i = 0; i < deliveries.size(); i++) {
+            if (!countSixMap.containsKey(deliveries.get(i).getBatsman()))
+                countSixMap.put(deliveries.get(i).getBatsman(), 0);
+            if (deliveries.get(i).getTotalRuns() >= 6)
+                countSixMap.put(deliveries.get(i).getBatsman(), countSixMap.get(deliveries.get(i).getBatsman()) + 1);
+        }
+        for (Map.Entry entry : countSixMap.entrySet()) {
+            System.out.println(entry.getKey() + " " + entry.getValue());
+        }
+    }
 
-	private static List<Delivery> getdeliveriesfromcsv() throws IOException {
+    private static List<Delivery> getdeliveriesfromcsv() throws IOException {
         FileReader fileReader = new FileReader(DELIVERIESFILE);
         BufferedReader bufferedReader = new BufferedReader(fileReader);
         bufferedReader.readLine();//skips the line
@@ -112,7 +113,6 @@ public class Main {
     }
 
     private static void topEconomicalBowler(List<Match> matches, List<Delivery> deliveries) {
-        // TODO Auto-generated method stub
         int year = 2015;
         Map<String, Bowler> economicalBowlersMap = new HashMap<>();
         for (int i = 0; i < matches.size(); i++) {
@@ -147,36 +147,39 @@ public class Main {
     }
 
     private static void extraRunsConcededPerTeam(List<Match> matches, List<Delivery> deliveries) {
-        Map<String, Integer> RunsConceded = new HashMap<>();
+        Map<String, Integer> runsConcededMap = new HashMap<>();
         int year = 2016;
         for (int i = 0; i < matches.size(); i++) {
             if (matches.get(i).getSeason() == year) {
                 for (int j = 0; j < deliveries.size(); j++) {
                     if (matches.get(i).getId() == deliveries.get(j).getMatchId()) {
-                        if (RunsConceded.containsKey(deliveries.get(j).getBattingTeam())) {
-                            RunsConceded.put(deliveries.get(j).getBattingTeam(), RunsConceded.get(deliveries.get(j)
+                        if (runsConcededMap.containsKey(deliveries.get(j).getBattingTeam())) {
+                            runsConcededMap.put(deliveries.get(j).getBattingTeam(), runsConcededMap.get(deliveries.get(j)
                                     .getBattingTeam()) + deliveries.get(j).getExtraRuns());
                         } else
-                            RunsConceded.put(deliveries.get(j).getBattingTeam(), deliveries.get(j).getExtraRuns());
+                            runsConcededMap.put(deliveries.get(j).getBattingTeam(), deliveries.get(j).getExtraRuns());
                     }
                 }
             }
         }
         System.out.println("Runs Conceded by each team:");
-        for (Map.Entry entry : RunsConceded.entrySet()) {
+        for (Map.Entry entry : runsConcededMap.entrySet()) {
             System.out.println(entry.getKey() + " " + entry.getValue());
         }
     }
 
     private static void matchesWonByEachTeam(List<Match> matches) {
         Map<String, Integer> MatchesWonMap = new HashMap<>();
-        for(int i = 0; i < matches.size(); i++) {
-            if (!MatchesWonMap.containsKey(matches.get(i).getTeam1()))
+        for (int i = 0; i < matches.size(); i++) {
+            if (!MatchesWonMap.containsKey(matches.get(i).getTeam1())) {
                 MatchesWonMap.put(matches.get(i).getTeam1(), 0);
-            if (!MatchesWonMap.containsKey(matches.get(i).getTeam2()))
+            }
+            if (!MatchesWonMap.containsKey(matches.get(i).getTeam2())) {
                 MatchesWonMap.put(matches.get(i).getTeam2(), 0);
-            if (!matches.get(i).getResult().equals("no result"))
+            }
+            if (!matches.get(i).getResult().equals("no result")) {
                 MatchesWonMap.put(matches.get(i).getWinner(), MatchesWonMap.get(matches.get(i).getWinner()) + 1);
+            }
         }
         System.out.println("Matches won by each team till now:");
         for (Map.Entry match : MatchesWonMap.entrySet()) {

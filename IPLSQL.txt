@@ -1,0 +1,12 @@
+
+
+1. Count Matches Played in all seasons
+	select season,count(*) from matches group by season;
+2. Count Matches Won By each Team
+	select winner,count(*) from matches where result<>"no result" group by winner;
+3. Count extra runs conceded per team in 2016
+	select bowling_team,SUM(extra_runs) from matches m,deliveries d where d.match_id=m.id  AND m.season=2016 group by bowling_team;
+4. Top Economical bowler of 2015
+	select d.bowler, (6.0 * SUM(d.bye_runs + d.wide_runs + d.noball_runs + d.batsman_runs))/count(d.ball) as "economy" from deliveries d , matches m where m.id = d.match_id and m.season=2015 group by d.bowler order by economy limit 1;
+5. Count 6s hit by every player
+	select batsman,count(*) from deliveries where total_runs>=6 group by batsman;
