@@ -165,19 +165,19 @@ public class Main {
                                     deliveries.get(j).getTotalRuns();
                         } else {
                             economicalBowlersMap.put(deliveries.get(j).getBowler(), new Bowler());
-                            economicalBowlersMap.get(deliveries.get(j).getBowler()).balls = 1;
+                            economicalBowlersMap.get(deliveries.get(j).getBowler()).balls = 1.0;
                             economicalBowlersMap.get(deliveries.get(j).getBowler()).totalRuns =
-                                    deliveries.get(j).getTotalRuns();
+                                    ((double)deliveries.get(j).getTotalRuns());
                         }
                     }
                 }
             }
         }
-        int minimumEconomy = Integer.MAX_VALUE;
+        Double minimumEconomy = Double.MAX_VALUE;
         String topEconomicalBowler = "";
         for (Map.Entry entry : economicalBowlersMap.entrySet()) {
             Bowler bowler = (Bowler) entry.getValue();
-            bowler.economy = bowler.totalRuns / bowler.balls;
+            bowler.economy = bowler.totalRuns / bowler.balls*6;
             if (bowler.economy < minimumEconomy) {
                 minimumEconomy = bowler.economy;
                 topEconomicalBowler = (String) entry.getKey();
@@ -193,11 +193,11 @@ public class Main {
             if (matches.get(i).getSeason() == year) {
                 for (int j = 0; j < deliveries.size(); j++) {
                     if (matches.get(i).getId() == deliveries.get(j).getMatchId()) {
-                        if (runsConcededMap.containsKey(deliveries.get(j).getBattingTeam())) {
-                            runsConcededMap.put(deliveries.get(j).getBattingTeam(), runsConcededMap.get(deliveries.get(j)
-                                    .getBattingTeam()) + deliveries.get(j).getExtraRuns());
+                        if (runsConcededMap.containsKey(deliveries.get(j).getBowlingTeam())) {
+                            runsConcededMap.put(deliveries.get(j).getBowlingTeam(), runsConcededMap.get(deliveries.get(j)
+                                    .getBowlingTeam()) + deliveries.get(j).getExtraRuns());
                         } else
-                            runsConcededMap.put(deliveries.get(j).getBattingTeam(), deliveries.get(j).getExtraRuns());
+                            runsConcededMap.put(deliveries.get(j).getBowlingTeam(), deliveries.get(j).getExtraRuns());
                     }
                 }
             }

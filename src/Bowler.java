@@ -1,13 +1,13 @@
 public class Bowler {
     private String name;
-    public int balls;
-    public int totalRuns;
-    public int economy;
+    public Double balls;
+    public Double totalRuns;
+    public Double economy;
 
     Bowler(){
-        balls=0;
-        totalRuns=0;
-        economy=0;
+        balls=0.0;
+        totalRuns=0.0;
+        economy=0.0;
     }
 
     public String getName() {
