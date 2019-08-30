@@ -1,3 +1,5 @@
+package rxjava;
+
 public class Match {
     private int id;
     private int season;

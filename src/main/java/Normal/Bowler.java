@@ -1,3 +1,5 @@
+package Normal;
+
 public class Bowler {
     private String name;
     public Double balls;
