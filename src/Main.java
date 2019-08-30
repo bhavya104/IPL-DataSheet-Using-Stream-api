@@ -8,15 +8,14 @@ public class Main {
 
 
     public static void main(String[] args) throws Exception {
-        ArrayList li = Arrays.asList(1,2,3);
-//        List<Match> matches = getmatchesfromcsv();
-//        List<Delivery> deliveries = getdeliveriesfromcsv();
-//
-//        matchesPlayedPerYear(matches);
-//        matchesWonByEachTeam(matches);
-//        extraRunsConcededPerTeam(matches, deliveries);
-//        topEconomicalBowler(matches, deliveries);
-//        countSixByEveryPlayer(deliveries);
+        List<Match> matches = getmatchesfromcsv();
+        List<Delivery> deliveries = getdeliveriesfromcsv();
+
+        matchesPlayedPerYear(matches);
+        matchesWonByEachTeam(matches);
+        extraRunsConcededPerTeam(matches, deliveries);
+        topEconomicalBowler(matches, deliveries);
+        countSixByEveryPlayer(deliveries);
     }
 
     private static void countSixByEveryPlayer(List<Delivery> deliveries) {
