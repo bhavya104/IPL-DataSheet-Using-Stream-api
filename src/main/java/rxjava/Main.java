@@ -1,34 +1,58 @@
 package rxjava;
 
-import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.core.Observable;
-import io.reactivex.rxjava3.core.Scheduler;
+import io.reactivex.rxjava3.observables.ConnectableObservable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import java.util.PriorityQueue;
-import java.util.stream.Collectors;
+import java.util.concurrent.TimeUnit;
+
 
 public class Main {
 
+    public static int a=5,b=10;
     public static void main(String[] args) throws Exception {
         List<Match> matches = getmatchesfromcsv();
         List<Delivery> deliveries = getdeliveriesfromcsv();
 
+        learningPath();
+      //  matchesPlayedPerYear(matches);
 
-        matchesPlayedPerYear(matches);
 
-
-          Flowable.just("Hello","World").subscribe(System.out::println);
+     //     Flowable.just("Hello","World").subscribe(System.out::println);
         try {
-            Thread.sleep(5000);
+            Thread.sleep(30000);
         } catch (Exception e){
 
         }
+    }
+
+    private static void learningPath() {
+
+        String[] arr = {"Abc","Bcd","Cde","Def","Efg"};
+        List<String> stringList=Arrays.asList(arr);
+
+        Observable<String> stringObservable=Observable.fromIterable(stringList);
+//        ConnectableObservable<String> stringConnectableObservable = stringObservable.publish();
+//        stringObservable.map(String::length)
+//                        .subscribe(System.out::println);
+     //   Observable.error(new Exception("Error")).subscribe(System.out::println,Throwable::printStackTrace,()->System.out.println("done"));
+//        stringObservable.subscribe(s -> System.out.println("obeserver 1 : "+s));
+//        stringObservable.subscribe(s -> System.out.println("obeserver 2 : "+s));
+
+//        stringConnectableObservable.connect();
+
+        Observable<Integer> integerObservable = Observable.defer(()->Observable.range(a,b));
+//        integerObservable.subscribe(System.out::println);
+//        a=15;
+//        b=16;
+//        integerObservable.subscribe(System.out::println);
+
+
     }
 
     private static void matchesPlayedPerYear(List<Match> matches) {
@@ -36,8 +60,8 @@ public class Main {
 
         Observable.fromIterable(matches).observeOn(Schedulers.computation())
                 .groupBy(Match::getSeason)
-                //.flatMap(group->group.subscribeOn(Schedulers.trampoline()).count())
-                .subscribe(match->System.out.println(match.getKey()));
+                //.flatMap(gr->gr.count().map(count->new Pair<>(gr.getKey(),count)))
+                .subscribe(System.out::println);
 
     }
 
@@ -104,7 +128,8 @@ public class Main {
         return deliveries;
     }
 
-    private static List<Match> getmatchesfromcsv() throws IOException {final int ID=0;
+    private static List<Match> getmatchesfromcsv() throws IOException {
+        final int ID=0;
         final int SEASON=1;
         final int CITY=2;
         final int DATE=3;
